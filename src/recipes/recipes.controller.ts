@@ -8,6 +8,7 @@ import {
 } from '@nestjs/common';
 import { RecipesService } from './recipes.service';
 import { Recipe, Prisma } from '@prisma/client';
+import { CreateRecipeDto } from './create-recipe.dto';
 
 @Controller('recipes')
 export class RecipesController {
@@ -38,7 +39,10 @@ export class RecipesController {
 
   // POST /recipes
   @Post()
-  async create(@Body() recipeData: Prisma.RecipeCreateInput): Promise<Recipe> {
+  async create(@Body() createRecipeDto: CreateRecipeDto): Promise<Recipe> {
+    const recipeData: Prisma.RecipeCreateInput = {
+      ...createRecipeDto,
+    };
     return this.recipesService.create(recipeData);
   }
 }
