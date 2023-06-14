@@ -12,7 +12,7 @@ model Recipe {
   name         String  @unique
   origin       String
   description  String
-  difficulty   Int
+  difficulty   String
   protein      String
   produce      String
   spice        String
